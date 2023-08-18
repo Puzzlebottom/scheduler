@@ -4,8 +4,8 @@ export const SET_INTERVIEW = "SET_INTERVIEW";
 
 export default function reducer(state, action) {
   switch (action.type) {
-    case SET_DAY:
-      return { ...state, day: action.day };
+    // case SET_DAY:
+    //   return { ...state, day: action.day };
     case SET_APPLICATION_DATA:
       return {
         ...state,
@@ -34,9 +34,9 @@ export default function reducer(state, action) {
       const days = state.days.map(day => {
         return day.appointments.includes(action.id)
           ? {
-              ...day,
-              spots: getSpotsForDay(day)
-            }
+            ...day,
+            spots: getSpotsForDay(day)
+          }
           : day;
       });
 
