@@ -35,7 +35,7 @@ run:
           git push https://github.com/puzzlebottom/scheduler.git main:production
 workflows:
   version: 2
-  test_and_deploy:
+  test_and_run:
     jobs:
       - build:
           filters:
