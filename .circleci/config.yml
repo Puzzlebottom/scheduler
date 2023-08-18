@@ -18,7 +18,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
-deploy:
+run:
   machine:
     enabled: true
 
@@ -41,7 +41,7 @@ workflows:
           filters:
             branches:
               ignore: production
-      - deploy:
+      - run:
           filters:
             branches:
               ignore: production
