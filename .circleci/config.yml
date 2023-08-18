@@ -18,30 +18,32 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
-run:
-  machine:
-    enabled: true
 
-  working_directory: ~/client
+  deploy:
+    machine:
+      enabled: true
 
-  steps:
-    - add_ssh_keys:
-        fingerprints:
-          - "7a:a7:1f:51:53:7a:ac:6c:82:36:43:3d:2f:30:33:0a"
-    - checkout
-    - run:
-        name: Push Main to Production
-        command: |
-          git push https://github.com/puzzlebottom/scheduler.git main:production
+    working_directory: ~/client
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "7a:a7:1f:51:53:7a:ac:6c:82:36:43:3d:2f:30:33:0a"
+      - checkout
+      - run:
+          name: Push main to Production
+          command: |
+            git push https://github.com/puzzlebottom/scheduler.git main:production
+
 workflows:
   version: 2
-  test_and_run:
+  test_and_deploy:
     jobs:
       - build:
           filters:
             branches:
               ignore: production
-      - run:
+      - deploy:
           filters:
             branches:
               ignore: production
