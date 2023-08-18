@@ -47,5 +47,3 @@ workflows:
               ignore: production
           requires:
             - build
-
-      
